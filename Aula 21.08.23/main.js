@@ -17,14 +17,19 @@ while (true) {
 
   nomes.push(input);
 
-  if (op === "+") {
-    emergencia++;
-  } else if (op === "-") {
-    prontoAtendimento++;
-  } else if (op === "*") {
-    poucoUrgente++;
-  } else if (faixa === "/") {
-    naoUrgente++;
+  switch (faixa) {
+    case 1:
+      emergencia++;
+      break;
+    case 2:
+      prontoAtendimento++;
+      break;
+    case 3:
+      poucoUrgente++;
+      break;
+    case 4:
+      naoUrgente++;
+      break;
   }
 }
 

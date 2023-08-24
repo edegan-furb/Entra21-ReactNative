@@ -41,15 +41,15 @@ document.write(`<br>`);
 var seq = [];
 var inp = prompt(`Informe uma sequência de números: `);
 var sp = inp.split(",");
-var totalUserArray = 0;
+var totalSeq = 0;
 
 for (var i = 0; i < sp.length; i++) {
   var num = parseFloat(sp[i]);
   if (!isNaN(num)) {
     seq.push(num);
-    totalUserArray += num;
+    totalSeq += num;
   }
 }
 
-var media = totalUserArray / seq.length;
+var media = totalSeq / seq.length;
 document.write(`${media}`);

@@ -27,7 +27,7 @@ for (const aluno of dadosAluno) {
   const frequenciaBoletim = aluno[5];
   const notasBoletimToString = notasBoletim.join(' - ');
 
-  let mediaBoletim = "Média desconsiderada";
+  let mediaBoletim;
 
   if (frequenciaBoletim > 75) {
     const media =

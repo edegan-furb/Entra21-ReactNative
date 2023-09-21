@@ -22,6 +22,7 @@ while (true) {
 
   //Se o usuário não quiser adicionar ou retirar, ele sai do loop
   if (Input === null || Input.toLowerCase() === "exit") {
+    alert("Sessão encerrada");
     break;
   }
 
@@ -101,3 +102,4 @@ while (true) {
       alert("Comando inválido. Use 'ADICIONAR' ou 'RETIRAR'.");
   }
 }
+

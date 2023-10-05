@@ -33,7 +33,7 @@ body {
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   text-align: left;
 }
 
@@ -69,18 +69,18 @@ body {
 }
 
 .dadosCadastrados {
-  max-height: 400px;
+  max-height: 380px;
   overflow-y: scroll;
   text-align: left;
 }
 
-.vacina-container {
+.vacinacao-container {
   position: relative;
   width: 100%;
   margin-bottom: 20px;
 }
 
-.vacina-group {
+.vacinacao-group {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;

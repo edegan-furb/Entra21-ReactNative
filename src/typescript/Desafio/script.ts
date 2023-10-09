@@ -19,12 +19,16 @@ const dadosCadastrados: Vacinacao[] = [];
 
 // Função para calcular a data de retorno, 30 dias após a data da vacinação
 function calcularDataRetorno(dataVacinacao: string): string {
-  // Bug 1 dia faltando por causa do fuso horário
+  // Fazendo a troca do "-"  pelo "/" fica buenas.
   // https://stackoverflow.com/questions/7556591/is-the-javascript-date-object-always-one-day-off
-  const dataVacinacaoObj = new Date(dataVacinacao.replace(/-/g, "/"));
+  const dataVacinacaoObj = new Date(dataVacinacao/*.replace(/-/g, "/")*/);
   dataVacinacaoObj.setDate(dataVacinacaoObj.getDate() + 30);
-  // Locale pt-BR
-  return dataVacinacaoObj.toLocaleDateString();
+
+  // Bug ocorria devido ao método toLocaleDateString
+  /* return dataVacinacaoObj.toLocaleDateString();*/
+
+  // Usando formatação ISO Standerd bug não acontece.
+  return dataVacinacaoObj.toISOString().substring(0, 10);
 }
 
 // Função para apagar uma vacinação do array de dados cadastrados
@@ -57,7 +61,7 @@ function vacinacaoHTML(dados: Vacinacao, index: number): string {
         <strong>Data de Vacinação:</strong> ${dataFormatada(
           dados.dataVacina
         )}<br />
-        <strong>Data de Retorno:</strong> ${dados.dataRetorno}<br />
+        <strong>Data de Retorno:</strong> ${dataFormatada(dados.dataRetorno)}<br />
       </div>
     </div>
   `;

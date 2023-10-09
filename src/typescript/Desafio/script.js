@@ -6,12 +6,14 @@ var dadosCadastradosContainer = document.getElementById("dadosCadastrados");
 var dadosCadastrados = [];
 // Função para calcular a data de retorno, 30 dias após a data da vacinação
 function calcularDataRetorno(dataVacinacao) {
-    // Bug 1 dia faltando por causa do fuso horário
+    // Fazendo a troca do "-"  pelo "/" fica buenas.
     // https://stackoverflow.com/questions/7556591/is-the-javascript-date-object-always-one-day-off
-    var dataVacinacaoObj = new Date(dataVacinacao.replace(/-/g, "/"));
+    var dataVacinacaoObj = new Date(dataVacinacao /*.replace(/-/g, "/")*/);
     dataVacinacaoObj.setDate(dataVacinacaoObj.getDate() + 30);
-    // Locale pt-BR
-    return dataVacinacaoObj.toLocaleDateString();
+    // Bug ocorria devido ao método toLocaleDateString
+    /* return dataVacinacaoObj.toLocaleDateString();*/
+    // Usando formatação ISO Standerd bug não acontece.
+    return dataVacinacaoObj.toISOString().substring(0, 10);
 }
 // Função para apagar uma vacinação do array de dados cadastrados
 function apagarVacina(index) {
@@ -28,7 +30,7 @@ function vacinacaoHTML(dados, index) {
         var _a = dateString.split("-"), year = _a[0], month = _a[1], day = _a[2];
         return "".concat(day, "/").concat(month, "/").concat(year);
     };
-    return "\n    <div class=\"vacinacao-container\">\n      <div class=\"delete-button\" onclick=\"apagarVacina(".concat(index, ")\">\n        x\n      </div>\n      <div class=\"vacinacao-group\">\n        <strong>CPF:</strong> ").concat(dados.cpf, "<br />\n        <strong>Nome:</strong> ").concat(dados.nome, "<br />\n        <strong>Data de Nascimento:</strong> ").concat(dataFormatada(dados.dataNascimento), "<br />\n        <strong>Nome da Vacina:</strong> ").concat(dados.nomeVacina, "<br />\n        <strong>Data de Vacina\u00E7\u00E3o:</strong> ").concat(dataFormatada(dados.dataVacina), "<br />\n        <strong>Data de Retorno:</strong> ").concat(dados.dataRetorno, "<br />\n      </div>\n    </div>\n  ");
+    return "\n    <div class=\"vacinacao-container\">\n      <div class=\"delete-button\" onclick=\"apagarVacina(".concat(index, ")\">\n        x\n      </div>\n      <div class=\"vacinacao-group\">\n        <strong>CPF:</strong> ").concat(dados.cpf, "<br />\n        <strong>Nome:</strong> ").concat(dados.nome, "<br />\n        <strong>Data de Nascimento:</strong> ").concat(dataFormatada(dados.dataNascimento), "<br />\n        <strong>Nome da Vacina:</strong> ").concat(dados.nomeVacina, "<br />\n        <strong>Data de Vacina\u00E7\u00E3o:</strong> ").concat(dataFormatada(dados.dataVacina), "<br />\n        <strong>Data de Retorno:</strong> ").concat(dataFormatada(dados.dataRetorno), "<br />\n      </div>\n    </div>\n  ");
 }
 //Listener de evento para o formulário de cadastro
 cadastroForm.addEventListener("submit", function (event) {

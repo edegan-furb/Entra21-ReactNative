@@ -18,14 +18,18 @@ CREATE TABLE PRODUTOS(
     nome_produto VARCHAR(255),
     descricao VARCHAR(255),
     preco_unitario DECIMAL(10, 2)
-) --  Tabela: ENTRADAS_ESTOQUE
+) 
+
+--  Tabela: ENTRADAS_ESTOQUE
 CREATE TABLE ENTRADAS_ESTOQUE(
     id_entrada INT PRIMARY KEY,
     id_produto INT,
     quantidade INT,
     data_entrada DATE,
     FOREIGN KEY (id_produto) REFERENCES PRODUTOS(id_produto)
-) -- Tabela: SAIDAS_ESTOQUE
+) 
+
+--  Tabela: SAIDAS_ESTOQUE
 CREATE TABLE SAIDAS_ESTOQUE(
     id_saida INT PRIMARY KEY,
     id_produto INT,
@@ -66,15 +70,15 @@ UPDATE ENTRADAS_ESTOQUE
 SET quantidade = 99
 WHERE id_entrada = 1;
 
--- Execute comandos DELETE para remover registros.
+--  Execute comandos DELETE para remover registros.
 DELETE from SAIDAS_ESTOQUE
 WHERE id_saida = 5;
 
--- Selecione todos os produtos em estoque.
+--  Selecione todos os produtos em estoque.
 SELECT *
 from PRODUTOS 
 
--- Liste as operações de entrada em um determinado período.
+--  Liste as operações de entrada em um determinado período.
 SELECT *
 from ESTRADAS_ESTOQUE
 WHERE data_entrada BETWEEN "2023-11-16" AND "2023-11-18"
